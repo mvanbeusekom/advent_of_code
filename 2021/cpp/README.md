@@ -12,7 +12,7 @@ To compile the application run the following command from the folder containing 
 # Change into puzzle you want to compile.
 cd 01
 # Compile the exercise.
-clang++ -g main.cpp -o main
+clang++ -std=c++17 -g main.cpp -o main
 ```
 
 ## Execute
