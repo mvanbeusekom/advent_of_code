@@ -3,7 +3,7 @@
 #include <vector>
 
 std::vector<int> readData();
-std::vector<int> slice(std::vector<int>& arr, int index, int amount);
+std::vector<int> slice(const std::vector<int>& arr, int index, int amount);
 
 int main() {
     std::vector<int> input = readData();
@@ -42,7 +42,7 @@ std::vector<int> readData() {
     return data;
 }
 
-std::vector<int> slice(std::vector<int>& arr, int index, int amount) {
+std::vector<int> slice(const std::vector<int>& arr, int index, int amount) {
     auto start = arr.begin() + index;
     auto end = arr.begin() + index + amount;
     return std::vector<int>(start, end);
