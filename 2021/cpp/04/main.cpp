@@ -8,6 +8,7 @@ std::vector<std::string> split(const std::string& instruction);
 
 int main() {
     std::vector<std::string> instructions = readData();
+    int aim = 0;
     int horizontal = 0;
     int depth = 0;
 
@@ -15,11 +16,13 @@ int main() {
         std::vector<std::string> splitInstruction = split(instruction);
 
         if (splitInstruction[0] == "forward") {
-            horizontal += std::stoi(splitInstruction[1]);
+            int x = std::stoi(splitInstruction[1]);
+            horizontal += x;
+            depth += aim * x;
         } else if (splitInstruction[0] == "up") {
-            depth -= std::stoi(splitInstruction[1]);
+            aim -= std::stoi(splitInstruction[1]);
         } else if (splitInstruction[0] == "down") {
-            depth += std::stoi(splitInstruction[1]);
+            aim += std::stoi(splitInstruction[1]);
         }
     }
         
