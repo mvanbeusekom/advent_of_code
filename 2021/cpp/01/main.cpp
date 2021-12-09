@@ -1,34 +1,34 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
+#include "../shared/utils.h"
 
 int main() {
     int prev = 0;
-    int curr = 0;
+    int curr;
     int counter = 0;
 
-    std::ifstream file("input.txt");
-    if (file.is_open()) {
-        std::string line;
-        
-        while(std::getline(file, line)) {
-            if (prev == 0) {
-                prev = std::stoi(line);
-                continue;
-            }
-            curr = std::stoi(line);
+    std::string filePath;
+    getInputFile(filePath);
 
-            if (curr > prev) {
-                counter++;
-            }
+    std::vector<std::string> data = readData(filePath);
 
-            prev = curr;
+    for(const std::string& line: data) {
+        if (prev == 0) {
+            prev = std::stoi(line);
+            continue;
         }
 
-        std::cout << "Answer:" << counter << std::endl;
-    } else {
-        std::cout << "Unable to open file." << std::endl;
+        curr = std::stoi(line);
+
+        if (curr > prev) {
+            counter++;
+        }
+
+        prev = curr;
     }
 
-    std::cout << "Press enter to exit the application." << std::endl;
+    log("Answer: " + std::to_string(counter));
+    log("Press enter to exit the application.");
     std::cin.get();
 }
