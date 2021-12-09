@@ -4,9 +4,7 @@
 #include "../shared/utils.h"
 
 int main() {
-    std::string filePath;
-    getInputFile(filePath);
-    std::vector<std::string> input = readData(filePath);
+    std::vector<std::string> input = readData();
     int counter = 0;
 
     for(int i = 0; i < input.size() - 1; i++) {

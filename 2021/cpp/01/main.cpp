@@ -7,11 +7,7 @@ int main() {
     int prev = 0;
     int curr;
     int counter = 0;
-
-    std::string filePath;
-    getInputFile(filePath);
-
-    std::vector<std::string> data = readData(filePath);
+    std::vector<std::string> data = readData();
 
     for(const std::string& line: data) {
         if (prev == 0) {

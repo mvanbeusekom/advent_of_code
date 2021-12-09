@@ -7,9 +7,7 @@ int main() {
     std::string gamma;
     std::string epsilon;
 
-    std::string filePath;
-    getInputFile(filePath);
-    std::vector<std::string> data = readData(filePath);
+    std::vector<std::string> data = readData();
     std::vector<std::string> pivot = pivotData(data);
 
     for(const std::string& reading: pivot) {      

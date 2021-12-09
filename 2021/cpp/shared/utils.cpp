@@ -28,18 +28,26 @@ std::vector<std::string> pivotData(const std::vector<std::string>& data) {
     return pivot;
 }
 
-std::vector<std::string> readData(const std::string& filePath) {
+std::vector<std::string> readData(bool excludeEmptyLines) {
+    std::string filePath;
+    getInputFile(filePath);
+
     std::vector<std::string> data;
     std::ifstream file(filePath);
     if (file.is_open()) {
         std::string line;
         while (std::getline(file, line)) {
-            if (line.length() > 0) {
-                data.push_back(line);
+            if (!excludeEmptyLines && line.length() <= 0) {
+                continue;
             }
+            data.push_back(line);
         }
     }
     return data;
+}
+
+std::vector<std::string> readData() {
+    return readData(false);
 }
 
 std::vector<std::string> slice(const std::vector<std::string>& arr, int index, int amount) {

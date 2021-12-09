@@ -4,9 +4,7 @@
 #include "../shared/utils.h"
 
 int main() {
-    std::string filePath;
-    getInputFile(filePath);
-    std::vector<std::string> instructions = readData(filePath);
+    std::vector<std::string> instructions = readData();
 
     int horizontal = 0;
     int depth = 0;

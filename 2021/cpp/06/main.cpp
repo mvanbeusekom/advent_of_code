@@ -10,9 +10,7 @@ int main() {
     std::string oxygen;
     std::string scrubber;
 
-    std::string filePath;
-    getInputFile(filePath);
-    std::vector<std::string> data = readData(filePath);
+    std::vector<std::string> data = readData();
 
     oxygen = filterData(data, 0, true)[0];
     scrubber = filterData(data, 0, false)[0];
