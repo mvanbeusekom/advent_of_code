@@ -12,11 +12,15 @@ private:
     matrix m_Numbers;
 
 public:
+    bool hasBingo;
+public:
+
     Card(const matrix& numbers) {
+        hasBingo = false;
         m_Numbers = numbers;
     }
 
-    bool hasBingo(const row& numbers) {
+    bool bingo(const row& numbers) {
         for(int i = 0; i < m_Numbers.size(); i++) {
             bool bingo = true;
             for(int j = 0; j < m_Numbers.size(); j++) {
@@ -29,6 +33,7 @@ public:
             }
 
             if (bingo) {
+                hasBingo = true;
                 return true;
             }
         }
@@ -45,6 +50,7 @@ public:
             }
 
             if (bingo) {
+                hasBingo = true;
                 return true;
             }
         }
@@ -95,24 +101,29 @@ int main() {
         std::cout << std::endl;
     }
 
-    int winningIndex = -1;
+    int lastIndex = -1;
+    int cardsWithBingo = 0;
     row drawnNumbers;
     for (int i = 0; i < numbersToDraw.size(); i++) {
         drawnNumbers.push_back(numbersToDraw[i]);
         for(int j = 0; j < cards.size(); j++) {
-            if (cards[j].hasBingo(drawnNumbers)) {
-                winningIndex = j;
-                break;
+            if (cards[j].hasBingo) {
+                continue;
+            }
+
+            if (cards[j].bingo(drawnNumbers)) {
+                lastIndex = j;
+                cardsWithBingo++;
             }
         }
 
-        if(winningIndex != -1) {
+        if(cardsWithBingo == cards.size()) {
             break;
         }
     }
 
-    Card winningCard = cards[winningIndex];
-    log("Answer: " + std::to_string(winningCard.getScore(drawnNumbers)));
+    Card lastCard = cards[lastIndex];
+    log("Answer: " + std::to_string(lastCard.getScore(drawnNumbers)));
     log("Press enter to exit the application.");
     std::cin.get();
 }
