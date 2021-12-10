@@ -10,7 +10,10 @@ int main() {
     int depth = 0;
 
     for(std::string instruction: instructions) {
-        std::vector<std::string> splitInstruction = split(instruction, ' ');
+        std::vector<std::string> splitInstruction = split<std::string>(
+                instruction,
+                ' ',
+                [](std::string str) { return str; });
 
         if (splitInstruction[0] == "forward") {
             horizontal += std::stoi(splitInstruction[1]);

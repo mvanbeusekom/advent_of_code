@@ -1,10 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
-
-void log(const std::string& message) {
-    std::cout << message << std::endl;
-}
+#include "utils.h"
 
 void getInputFile(std::string& filePath) {
     std::cout << "Specify the path to the input file: ";
@@ -28,7 +25,7 @@ std::vector<std::string> pivotData(const std::vector<std::string>& data) {
     return pivot;
 }
 
-std::vector<std::string> readData(bool excludeEmptyLines) {
+std::vector<std::string> readData() {
     std::string filePath;
     getInputFile(filePath);
 
@@ -37,7 +34,7 @@ std::vector<std::string> readData(bool excludeEmptyLines) {
     if (file.is_open()) {
         std::string line;
         while (std::getline(file, line)) {
-            if (!excludeEmptyLines && line.length() <= 0) {
+            if (line.empty()) {
                 continue;
             }
             data.push_back(line);
@@ -46,31 +43,8 @@ std::vector<std::string> readData(bool excludeEmptyLines) {
     return data;
 }
 
-std::vector<std::string> readData() {
-    return readData(false);
-}
-
 std::vector<std::string> slice(const std::vector<std::string>& arr, int index, int amount) {
     auto start = arr.begin() + index;
     auto end = arr.begin() + index + amount;
     return std::vector<std::string>(start, end);
-}
-
-std::vector<std::string> split(std::string str, char delimiter) {
-    std::vector<std::string> splittedString;
-    int pos = 0;
-
-    while ((pos = str.find(delimiter, 0)) != std::string::npos) {
-        std::string token = str.substr(0, pos);
-        if (token.length() > 0) {
-            splittedString.push_back(token);
-        }
-        str.erase(0, pos + 1);
-    }
-
-    if (str.length() > 0) {
-        splittedString.push_back(str);
-    }
-
-    return splittedString;
 }
