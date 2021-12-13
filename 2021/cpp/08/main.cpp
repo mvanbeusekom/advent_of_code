@@ -87,7 +87,7 @@ int main() {
     std::vector<std::string> data = readData();
     row numbersToDraw = split<int>(
             data[0],
-            ',',
+            ",",
             [](std::string str) { return std::stoi(str); });
 
     matrix numbers = convertRawData(data);
@@ -123,8 +123,8 @@ int main() {
     }
 
     Card lastCard = cards[lastIndex];
-    log("Answer: " + std::to_string(lastCard.getScore(drawnNumbers)));
-    log("Press enter to exit the application.");
+    std::cout << "Answer: " << lastCard.getScore(drawnNumbers) << std::endl;
+    std::cout << "Press enter to exit the application." << std::endl;
     std::cin.get();
 }
 
@@ -134,7 +134,7 @@ matrix convertRawData(const std::vector<std::string>& data) {
     for(int i = 1; i < data.size(); i++) {
         row line = split<int>(
                 data[i],
-                ' ',
+                " ",
                 [](std::string str) {
                     return std::stoi(str);
                 }

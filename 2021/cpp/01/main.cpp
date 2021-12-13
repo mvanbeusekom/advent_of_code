@@ -24,7 +24,7 @@ int main() {
         prev = curr;
     }
 
-    log("Answer: " + std::to_string(counter));
-    log("Press enter to exit the application.");
+    std::cout << "Answer: " << counter << std::endl;
+    std::cout << "Press enter to exit the application." << std::endl;
     std::cin.get();
 }

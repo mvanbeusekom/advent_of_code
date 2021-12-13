@@ -13,7 +13,7 @@ int main() {
     for(std::string instruction: instructions) {
         std::vector<std::string> splitInstruction = split<std::string>(
                 instruction,
-                ' ',
+                " ",
                 [](std::string str) { return str; });
 
         if (splitInstruction[0] == "forward") {
@@ -26,8 +26,8 @@ int main() {
             aim += std::stoi(splitInstruction[1]);
         }
     }
-        
-    log("Answer: " + std::to_string(horizontal * depth));
-    log("Press enter to exit the application.");
+
+    std::cout << "Answer: " << horizontal * depth << std::endl;
+    std::cout << "Press enter to exit the application." << std::endl;
     std::cin.get();
 }

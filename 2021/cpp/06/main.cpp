@@ -15,8 +15,8 @@ int main() {
     oxygen = filterData(data, 0, true)[0];
     scrubber = filterData(data, 0, false)[0];
 
-    log("Answer: " + std::to_string(std::stoi(oxygen, 0, 2) * std::stoi(scrubber, 0, 2)));
-    log("Press enter to exit the application.");
+    std::cout << "Answer:" << std::stoi(oxygen, 0, 2) * std::stoi(scrubber, 0, 2) << std::endl;
+    std::cout << "Press enter to exit the application." << std::endl;
     std::cin.get();
 }
 
