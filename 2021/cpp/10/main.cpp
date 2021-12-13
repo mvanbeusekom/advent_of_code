@@ -73,11 +73,7 @@ int main() {
     std::vector<Line> lines;
 
     for (std::vector<std::string>::iterator it = data.begin(); it != data.end(); ++it) {
-        Line line = Line::parse(*it);
-
-        if (!line.isDiagonal()) {
-            lines.push_back(line);
-        }
+        lines.push_back(Line::parse(*it));
     }
 
     for (std::vector<Line>::iterator it = lines.begin(); it != lines.end(); ++it) {
