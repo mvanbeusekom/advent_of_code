@@ -47,17 +47,10 @@ int main () {
         lanternfish[6] = lanternfish[6] + newFish;
         lanternfish[8] = newFish;
         newFish = 0;
-
-        std::cout << "Day " << i << ":" << std::endl;
-        for (auto& pair: lanternfish) {
-            std::cout << "[" << pair.first << "]: " << pair.second << std::endl;
-        }
     }
 
     unsigned long long answer = 0;
-    std::cout << "Final: " << std::endl;
     for (auto& pair: lanternfish) {
-        std::cout << "[" << pair.first << "]: " << pair.second << std::endl;
         answer = answer + pair.second;
     }
 
