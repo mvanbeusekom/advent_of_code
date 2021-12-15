@@ -26,6 +26,19 @@ class Line {
 private:
     Point m_StartPoint, m_EndPoint;
 
+private:
+    int calculateSlope() {
+        return (m_EndPoint.Y - m_StartPoint.Y) / (m_EndPoint.X - m_StartPoint.X);
+    }
+
+    int calculateIntercept(const int& slope) {
+        return (m_StartPoint.Y - (slope * m_StartPoint.X));
+    }
+
+    int calculateY(const int& x, const int& slope, const int& intercept) {
+        return x * slope + intercept;
+    }
+
 public:
     Line() = delete;
     Line(const Point& startPoint, const Point& endPoint)
@@ -38,17 +51,24 @@ public:
 
     std::vector<Point> getPoints() {
         Point difference = Point(m_StartPoint.X - m_EndPoint.X, m_StartPoint.Y - m_EndPoint.Y);
-
         std::vector<Point> points { m_StartPoint };
+
         int incrementX = difference.X != 0 ? difference.X / abs(difference.X) : 0;
         int incrementY = difference.Y != 0 ? difference.Y / abs(difference.Y) : 0;
 
-        for (int i = 1; i < abs(difference.X); ++i) {
-            points.push_back(Point(m_StartPoint.X + (incrementX * i) * -1, m_StartPoint.Y));
-        }
+        if (incrementX != 0) {
+            int slope = calculateSlope();
+            int intercept = calculateIntercept(slope);
 
-        for (int i = 1; i < abs(difference.Y); ++i) {
-            points.push_back(Point(m_StartPoint.X, m_StartPoint.Y + (incrementY * i) * -1));
+            for (int i = 1; i < abs(difference.X); ++i) {
+                int x = m_StartPoint.X + (incrementX * i) * -1;
+                int y = calculateY(x, slope, intercept);
+                points.push_back(Point(x, y));
+            }
+        } else {
+            for (int i = 1; i < abs(difference.Y); ++i) {
+                points.push_back(Point(m_StartPoint.X, m_StartPoint.Y + (incrementY * i) * -1));
+            }
         }
 
         points.push_back(m_EndPoint);
@@ -79,6 +99,7 @@ int main() {
     for (std::vector<Line>::iterator it = lines.begin(); it != lines.end(); ++it) {
         auto points = it->getPoints();
         for (std::vector<Point>::iterator pointIt = points.begin(); pointIt != points.end(); ++pointIt) {
+            //std::cout << pointIt->X << "," << pointIt->Y << std::endl;
             vents[pointIt->X][pointIt->Y]++;
         }
     }
@@ -86,10 +107,12 @@ int main() {
     int answer = 0;
     for (int i = 0; i < matrix_size; ++i) {
         for (int j = 0; j < matrix_size; ++j) {
-            if (vents[i][j] >= 2) {
+            //std::cout << ((vents[j][i] != 0) ? std::to_string(vents[j][i]) : ".");
+            if (vents[j][i] >= 2) {
                 answer++;
             }
         }
+        //std::cout << std::endl;
     }
 
     std::cout << "Answer: " << answer << std::endl;
