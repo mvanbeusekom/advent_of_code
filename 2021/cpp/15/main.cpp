@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 #include <vector>
 #include "../shared/utils.h"
 
@@ -13,7 +12,6 @@ int main() {
         std::vector<std::string> outputValues = split<std::string>(input[1], " ", transform);
 
         for (std::vector<std::string>::iterator itValue = outputValues.begin(); itValue != outputValues.end(); ++itValue) {
-            std::cout << *itValue << " ";
             int size = (*itValue).size();
             if (size == 2 || size == 3 || size == 4 || size == 7) {
                 answer++;
