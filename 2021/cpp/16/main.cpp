@@ -81,7 +81,7 @@ int main() {
                 }
             }
         }
-        
+
         answer += std::stoi(digit);
     }
 
