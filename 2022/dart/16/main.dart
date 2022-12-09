@@ -3,6 +3,7 @@ import 'dart:io';
 const String inputFile = 'input.txt';
 
 Future<void> main() async {
+  final Stopwatch stopwatch = Stopwatch()..start();
   final File input = File(inputFile);
   final List<String> lines = await input.readAsLines();
   final List<List<Tree>> forest = parseForest(lines);
@@ -17,6 +18,7 @@ Future<void> main() async {
   }
   
   print('Highest scenic score: ${highestScenicScore}');
+  print('Execution time: ${stopwatch.elapsed}MS');
 }
 
 List<List<Tree>> parseForest(List<String> lines) {
