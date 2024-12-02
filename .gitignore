@@ -3,7 +3,3 @@
 
 # Visual Studio Code
 **/.vscode/settings.json
-
-# Custom files and folders
-**/build
-**/bin
