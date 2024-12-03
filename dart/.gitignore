@@ -1,3 +1,7 @@
 # https://dart.dev/guides/libraries/private-files
 # Created by `dart pub`
 .dart_tool/
+
+# Ignore Advent of Code content so not accidentally leak protected content.
+input.txt
+test.txt
