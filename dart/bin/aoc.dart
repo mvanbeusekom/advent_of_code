@@ -6,6 +6,8 @@ List<Puzzle> puzzles = <Puzzle>[
   PuzzleOne(identifier: PuzzleIdentifier(year: 2024, day: 1)),
   PuzzleTwo(identifier: PuzzleIdentifier(year: 2024, day: 2)),
   PuzzleThree(identifier: PuzzleIdentifier(year: 2024, day: 3)),
+  PuzzleFour(identifier: PuzzleIdentifier(year: 2024, day: 4)),
+  PuzzleFive(identifier: PuzzleIdentifier(year: 2024, day: 5)),
 ];
 
 ArgParser argumentParser = ArgParser()
